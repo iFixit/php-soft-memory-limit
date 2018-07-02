@@ -1,0 +1,10 @@
+<phpunit>
+   <testsuites>
+     <testsuite name="MemoryChecker Test Suite">
+        <directory>SoftMemoryLimit/tests</directory>
+     </testsuite>
+   </testsuites>
+   <php>
+    <includePath>SoftMemoryLimit</includePath>
+   </php>
+</phpunit>
