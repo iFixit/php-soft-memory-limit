@@ -83,22 +83,21 @@ class MemoryChecker {
 
       $shorthand = substr($memoryLimit, -1);
 
-      $multipler;
       switch (strtolower($shorthand)) {
          case 'k':
-            $multipler = 1024;
+            $multiplier = 1024;
             break;
          case 'm':
-            $multipler = 1024 * 1024;
+            $multiplier = 1024 * 1024;
             break;
          case 'g':
-            $multipler = 1024 * 1024 * 1024;
+            $multiplier = 1024 * 1024 * 1024;
             break;
          default:
             throw new ParseException("Unknown byte shorthand: $shorthand");
       }
 
-      return intval($numeral) * $multipler;
+      return intval($numeral) * $multiplier;
    }
 
    // No Cloning or Serializing.
