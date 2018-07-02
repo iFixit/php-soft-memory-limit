@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace SoftMemoryLimit;
 
 class MemoryChecker {
-   const DEFAULT_MEMORY_RATIO = 1;
+   const DEFAULT_MEMORY_RATIO = 0.8;
    private $memoryRatio;
    private $exceptionThrown;
 

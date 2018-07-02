@@ -15,7 +15,7 @@ class MemoryCheckerTest extends TestCase {
         $hardLimit = $memoryChecker->getHardLimit();
         $softLimit = $memoryChecker->getSoftLimit();
 
-        $this->assertSame($hardLimit, $softLimit);
+        $this->assertSame(intval($hardLimit * 0.8), $softLimit);
     }
 
     public function testGetHardLimit() {
