@@ -41,11 +41,13 @@ class MemoryChecker {
     */
    public function checkPeakMemoryUsage(): void {
       $peakMemoryUsage = memory_get_peak_usage();
+      $softLimit = $this->getSoftLimit();
 
-      if ($peakMemoryUsage > $this->getSoftLimit()) {
+      if ($peakMemoryUsage > $softLimit) {
          if (!$this->exceptionThrown) {
             $this->exceptionThrown = true;
-            throw new MemoryLimitExceededException();
+            $msg = "Soft memory limit of $softLimit exceeded. $peakMemoryUsage bytes used.";
+            throw new MemoryLimitExceededException($msg);
          }
       }
    }
