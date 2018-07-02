@@ -1,0 +1,24 @@
+{
+    "name": "ifixit/php-soft-memory-limit",
+    "description": "A utility that maintains a soft memory limit  for a running PHP process",
+    "version": "0.1.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Opperwall",
+            "email": "chriso@ifixit.com"
+        }
+    ],
+    "require": {
+      "php": "^7.0"
+    },
+    "autoload": {
+       "psr-4": {
+          "SoftMemoryLimit\\": "SoftMemoryLimit"
+       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2"
+    }
+}
