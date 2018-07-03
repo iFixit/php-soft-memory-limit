@@ -44,8 +44,6 @@ class MemoryCheckerTest extends TestCase {
         $memoryChecker = \SoftMemoryLimit\MemoryChecker::getSingleton();
 
         $memoryChecker->setSoftLimitRatio(self::SMALL_RATIO);
-        $thrown = false;
-
         $memoryChecker->checkPeakMemoryUsage();
     }
 
