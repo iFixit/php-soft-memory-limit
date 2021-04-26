@@ -119,6 +119,12 @@ class MemoryCheckerTest extends TestCase {
         $memoryChecker = new MockMemoryChecker();
         $memoryChecker->parseMemoryLimit('10J');
     }
+
+    public function testSerializationComplains() {
+        $this->expectException(\SoftMemoryLimit\SerializationException::class);
+
+        unserialize(serialize(new MockMemoryChecker()));
+    }
 }
 
 /**
