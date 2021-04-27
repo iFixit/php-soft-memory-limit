@@ -104,8 +104,14 @@ class MemoryChecker {
 
    // No Cloning or Serializing.
    private function __clone() {}
-   private function __wakeup() {}
+   public function __sleep(): array {
+      throw new SerializationException('No serializing allowed');
+   }
+   public function __wakeup(): void {
+      throw new SerializationException('No serializing allowed');
+   }
 }
 
 class MemoryLimitExceededException extends \Exception {}
 class ParseException extends \Exception {}
+class SerializationException extends \Exception {}

@@ -37,10 +37,8 @@ class MemoryCheckerTest extends TestCase {
         $this->assertSame($expectedSoftLimit, $memoryChecker->getSoftLimit());
     }
 
-    /**
-     * @expectedException \SoftMemoryLimit\MemoryLimitExceededException
-     */
     public function testCheckPeakMemoryUsage() {
+        $this->expectException(\SoftMemoryLimit\MemoryLimitExceededException::class);
         $memoryChecker = \SoftMemoryLimit\MemoryChecker::getSingleton();
 
         $memoryChecker->setSoftLimitRatio(self::SMALL_RATIO);
@@ -81,18 +79,16 @@ class MemoryCheckerTest extends TestCase {
         }
     }
 
-    /**
-     * @expectedException \SoftMemoryLimit\ParseException
-     */
     public function testParseMemoryLimitBadAlphaString() {
+        $this->expectException(\SoftMemoryLimit\ParseException::class);
+
         $memoryChecker = new MockMemoryChecker();
         $memoryChecker->parseMemoryLimit('abc');
     }
 
-    /**
-     * @expectedException \SoftMemoryLimit\ParseException
-     */
     public function testParseMemoryLimitEmptyString() {
+        $this->expectException(\SoftMemoryLimit\ParseException::class);
+
         $memoryChecker = new MockMemoryChecker();
         $memoryChecker->parseMemoryLimit('');
     }
@@ -110,20 +106,24 @@ class MemoryCheckerTest extends TestCase {
         $this->assertSame(1 * 1024 * 1024 * 1024, $memoryChecker->parseMemoryLimit('1G'));
     }
 
-    /**
-     * @expectedException \SoftMemoryLimit\ParseException
-     */
     public function testParseMemoryLimitTooManyAlphaCharacters() {
+        $this->expectException(\SoftMemoryLimit\ParseException::class);
+
         $memoryChecker = new MockMemoryChecker();
         $memoryChecker->parseMemoryLimit('100KK');
     }
 
-    /**
-     * @expectedException \SoftMemoryLimit\ParseException
-     */
     public function testParseMemoryLimitInvalidShorthand() {
+        $this->expectException(\SoftMemoryLimit\ParseException::class);
+
         $memoryChecker = new MockMemoryChecker();
         $memoryChecker->parseMemoryLimit('10J');
+    }
+
+    public function testSerializationComplains() {
+        $this->expectException(\SoftMemoryLimit\SerializationException::class);
+
+        serialize(new MockMemoryChecker());
     }
 }
 
