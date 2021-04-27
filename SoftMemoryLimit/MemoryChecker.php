@@ -104,6 +104,9 @@ class MemoryChecker {
 
    // No Cloning or Serializing.
    private function __clone() {}
+   public function __sleep(): array {
+      throw new SerializationException('No serializing allowed');
+   }
    public function __wakeup(): void {
       throw new SerializationException('No serializing allowed');
    }

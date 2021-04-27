@@ -123,7 +123,7 @@ class MemoryCheckerTest extends TestCase {
     public function testSerializationComplains() {
         $this->expectException(\SoftMemoryLimit\SerializationException::class);
 
-        unserialize(serialize(new MockMemoryChecker()));
+        serialize(new MockMemoryChecker());
     }
 }
 
