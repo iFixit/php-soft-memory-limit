@@ -12,19 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        PHP_VERSION:
-          - 7.3
-          - 7.4
-          - 8.0
-    container:
-      image: "php:${{ matrix.PHP_VERSION }}"
+        php-versions: ['7.3', '7.4', '8.0']
     steps:  
-    - name: Download latest git
-      run: "add-apt-repository ppa:git-core/ppa && apt-get update && apt-get install -y git unzip"
-    - name: Download composer
-      run: "cd $(mktemp -d) && curl https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
-    - name: Install deps
-      run: "composer install"
-    - uses: actions/checkout@v2
-    - name: Tests
-      run:  ./vendor/bin/phpunit
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP and run tests
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_versions }}
+          tools: phpunit
