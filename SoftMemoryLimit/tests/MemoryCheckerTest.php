@@ -19,10 +19,10 @@ class MemoryCheckerTest extends TestCase {
     }
 
     public function testGetHardLimit() {
-        $memoryLimit = 1024 * 1024;
+        $memoryLimit = 10 * 1024 * 1024;
         $memoryChecker = \SoftMemoryLimit\MemoryChecker::getSingleton();
 
-        // Set it to a MB or something.
+        // Set it to 10 MB or something.
         ini_set('memory_limit', "$memoryLimit");
         $this->assertSame($memoryLimit, $memoryChecker->getHardLimit());
     }
